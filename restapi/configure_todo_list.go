@@ -14,7 +14,7 @@ import (
 	"goswagger/restapi/operations/todos"
 )
 
-//go:generate swagger generate server --target ../../goswagger --name TodoList --spec ../swagger.yml
+//go:generate swagger generate server --target ../../server-1 --name TodoList --spec ../swagger.yml
 
 func configureFlags(api *operations.TodoListAPI) {
 	// api.CommandLineOptionsGroups = []swag.CommandLineOptionsGroup{ ... }
@@ -34,9 +34,9 @@ func configureAPI(api *operations.TodoListAPI) http.Handler {
 
 	api.JSONProducer = runtime.JSONProducer()
 
-	if api.TodosGetHandler == nil {
-		api.TodosGetHandler = todos.GetHandlerFunc(func(params todos.GetParams) middleware.Responder {
-			return middleware.NotImplemented("operation todos.Get has not yet been implemented")
+	if api.TodosFindTodosHandler == nil {
+		api.TodosFindTodosHandler = todos.FindTodosHandlerFunc(func(params todos.FindTodosParams) middleware.Responder {
+			return middleware.NotImplemented("operation todos.FindTodos has not yet been implemented")
 		})
 	}
 
